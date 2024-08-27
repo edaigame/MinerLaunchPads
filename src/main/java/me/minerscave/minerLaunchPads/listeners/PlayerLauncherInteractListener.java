@@ -1,6 +1,6 @@
-package me.minerscave.minerLauncher.listeners;
+package me.minerscave.minerLaunchPads.listeners;
 
-import me.minerscave.minerLauncher.MinerLauncher;
+import me.minerscave.minerLaunchPads.MinerLaunchPads;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -28,7 +28,7 @@ public class PlayerLauncherInteractListener implements Listener {
                 return; // Esci se il blocco non è una pedana leggera
             }
 
-            Configuration config = MinerLauncher.getPlugin().getConfig();
+            Configuration config = MinerLaunchPads.getPlugin().getConfig();
             ConfigurationSection launchersSection = config.getConfigurationSection("launchers");
             Set<String> keys = launchersSection.getKeys(false);
 

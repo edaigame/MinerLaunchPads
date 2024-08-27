@@ -1,22 +1,24 @@
-package me.minerscave.minerLauncher;
+package me.minerscave.minerLaunchPads;
 
-import me.minerscave.minerLauncher.commands.EditLauncherCommand;
-import me.minerscave.minerLauncher.commands.LauncherInfoCommand;
-import me.minerscave.minerLauncher.commands.RemoveLauncherCommand;
-import me.minerscave.minerLauncher.commands.SetLauncherCommand;
-import me.minerscave.minerLauncher.listeners.PlayerLauncherBlockBreakListener;
-import me.minerscave.minerLauncher.listeners.PlayerLauncherInteractListener;
-import org.bukkit.configuration.Configuration;
+import me.minerscave.minerLaunchPads.commands.EditLauncherCommand;
+import me.minerscave.minerLaunchPads.commands.LauncherInfoCommand;
+import me.minerscave.minerLaunchPads.commands.RemoveLauncherCommand;
+import me.minerscave.minerLaunchPads.commands.SetLauncherCommand;
+import me.minerscave.minerLaunchPads.listeners.PlayerLauncherBlockBreakListener;
+import me.minerscave.minerLaunchPads.listeners.PlayerLauncherInteractListener;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class MinerLauncher extends JavaPlugin {
+public final class MinerLaunchPads extends JavaPlugin {
 
-    private static MinerLauncher plugin;
+    private static MinerLaunchPads plugin;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println("MinerLauncher plugin started!");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b[MinerLaunchPads] Plugin started!"));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b[MinerLaunchPads] Plugin made by &lMiner's Cave!"));
         plugin = this;
 
         this.getConfig().options().copyDefaults(true);
@@ -38,7 +40,7 @@ public final class MinerLauncher extends JavaPlugin {
         plugin.reloadConfig();
     }
 
-    public static MinerLauncher getPlugin() {
+    public static MinerLaunchPads getPlugin() {
         return plugin;
     }
 }

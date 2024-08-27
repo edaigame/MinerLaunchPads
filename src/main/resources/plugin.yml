@@ -1,6 +1,50 @@
-name: MinerLauncher
-version: '0.1-SNAPSHOT'
-main: me.minerscave.minerLauncher.MinerLauncher
+name: MinerLaunchPads
+version: ${project.version}
+main: me.minerscave.minerLaunchPads.MinerLaunchPads
 api-version: '1.21'
 authors: [Miner's Cave]
-description: Plugin create by Miner for his Minecraft Server, "The Miner"
+description: A simple Minecraft Spigot plugin that allows to create launch pads in your server!
+
+commands:
+  setlauncher:
+    description: Allows players to set launchpads
+    permission: minerlauncher.setlauncher
+    usage: /setlauncher <velocityInt> <height>
+    aliases:
+      - setlaunchpad
+  removelauncher:
+    description: Allows players to remove launchpads
+    permission: minerlauncher.removelauncher
+    usage: /removelauncher
+    aliases:
+      - removelaunchpad
+      - deletelauncher
+      - deletelaunchpad
+  editlauncher:
+    description: Allows players to edit launchers
+    permission: minerlauncher.editlauncher
+    usage: /editlauncher <velocityInt> <height>
+    aliases:
+      - editlaunchpad
+      - modifylauncher
+      - modifylaunchpad
+  launcherinfo:
+    description: Allows players to retreive launchers information
+    permission: minerlauncher.launcherinfo
+    usage: /launcherinfo
+    aliases:
+      - retreivelauncherinfo
+
+permissions:
+  minerlauncher.setlauncher:
+    description: Allows players to run the /setlauncher command
+    default: false
+  minerlauncher.removelauncher:
+    description: Allows players to run the /removelauncher command
+    default: false
+  minerlauncher.editlauncher:
+    description: Allows players to run the /editlauncher command
+    default: false
+  minerlauncher.launcherinfo:
+    description: Allows players to run the /launcherinfo command
+    default: false

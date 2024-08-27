@@ -1,0 +1,15 @@
+messages:
+  error-not-a-launch-pad: "&4Error: That is not a Launch Pad. You might be too far away from the block."
+  error-no-launchers-set: "&4Error: There are no launchers set."
+  error-already-a-launchpad: "&4Error: That is already a Launch Pad."
+  error-you-are-not-a-player: "&4Error: You are not a player."
+  error-only-ints-as-args: "&4Error: You can only provide integers as arguments."
+  error-not-oak-plate: "&4Error. You must target an Oak Pressure Plate."
+
+  cant-break: "&4You can't break launch pads."
+
+  success-launcher-set: "&2Successfully set launcher at %x% %y% %z%"
+  success-launcher-edit: "&2Successfully edited launcher at %x% %y% %z%"
+  success-launcher-remove: "&2Successfully removed launcher at %x% %y% %z%"
+
+launchers:

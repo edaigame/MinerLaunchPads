@@ -1,10 +1,9 @@
-package me.minerscave.minerLauncher.commands;
+package me.minerscave.minerLaunchPads.commands;
 
-import me.minerscave.minerLauncher.MinerLauncher;
+import me.minerscave.minerLaunchPads.MinerLaunchPads;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +13,6 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-import java.awt.*;
 import java.util.Set;
 
 public class RemoveLauncherCommand implements CommandExecutor {
@@ -24,7 +22,7 @@ public class RemoveLauncherCommand implements CommandExecutor {
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
         if (commandSender instanceof Player player) {
-            Configuration config = MinerLauncher.getPlugin().getConfig();
+            Configuration config = MinerLaunchPads.getPlugin().getConfig();
             Block targetBlock = player.getTargetBlock(null, 4);
             ConfigurationSection launchersSection = config.getConfigurationSection("launchers");
             if (launchersSection == null) {
@@ -57,7 +55,7 @@ public class RemoveLauncherCommand implements CommandExecutor {
                             targetBlock.setType(Material.AIR);  // Imposta il blocco come aria (rimuovendo il launcher)
 
                             config.set("launchers."+key, null);
-                            MinerLauncher.getPlugin().saveConfig();  // Salva la configurazione
+                            MinerLaunchPads.getPlugin().saveConfig();  // Salva la configurazione
                             launcherFound = true;
                             break;
                         }
@@ -71,7 +69,7 @@ public class RemoveLauncherCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.error-no-launchers-set")));
             }
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLauncher.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLaunchPads.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
         }
 
         return true;

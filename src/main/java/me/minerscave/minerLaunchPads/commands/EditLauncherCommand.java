@@ -1,8 +1,7 @@
-package me.minerscave.minerLauncher.commands;
+package me.minerscave.minerLaunchPads.commands;
 
-import me.minerscave.minerLauncher.MinerLauncher;
+import me.minerscave.minerLaunchPads.MinerLaunchPads;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,7 +19,7 @@ public class EditLauncherCommand implements CommandExecutor {
 
         if(commandSender instanceof Player player){
 
-            Configuration config = MinerLauncher.getPlugin().getConfig();
+            Configuration config = MinerLaunchPads.getPlugin().getConfig();
             Block block = player.getTargetBlock(null, 4);
             ConfigurationSection launchersSection = config.getConfigurationSection("launchers");
 
@@ -81,19 +80,19 @@ public class EditLauncherCommand implements CommandExecutor {
             }
 
         }else{
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLauncher.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLaunchPads.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
         }
 
         return true;
     }
 
     private void editLauncher(Block targetBlock, int velocity, int height, Player player, String key) {
-        Configuration config = MinerLauncher.getPlugin().getConfig();
+        Configuration config = MinerLaunchPads.getPlugin().getConfig();
 
         config.set("launchers."+key + ".velocity", velocity);
         config.set("launchers."+key + ".height", height);
 
-        MinerLauncher.getPlugin().saveConfig();  // Salva la configurazione
+        MinerLaunchPads.getPlugin().saveConfig();  // Salva la configurazione
 
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.success-launcher-edit").replace("%x%", String.valueOf(targetBlock.getLocation().getBlockX())).replace("%y%", String.valueOf(targetBlock.getLocation().getBlockY())).replace("%z%", String.valueOf(targetBlock.getLocation().getBlockZ()))));
     }

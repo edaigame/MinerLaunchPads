@@ -1,10 +1,6 @@
-package me.minerscave.minerLauncher.commands;
+package me.minerscave.minerLaunchPads.commands;
 
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.NBTBlock;
-import de.tr7zw.nbtapi.NBTChunk;
-import de.tr7zw.nbtapi.iface.ReadWriteNBT;
-import me.minerscave.minerLauncher.MinerLauncher;
+import me.minerscave.minerLaunchPads.MinerLaunchPads;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,13 +14,11 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class SetLauncherCommand implements CommandExecutor {
 
-    Configuration config = MinerLauncher.getPlugin().getConfig();
+    Configuration config = MinerLaunchPads.getPlugin().getConfig();
     ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
     @Override
@@ -84,13 +78,13 @@ public class SetLauncherCommand implements CommandExecutor {
                 setLauncher(targetBlock, velocity, height, player);
             }
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLauncher.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLaunchPads.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
         }
         return true;
     }
 
     private void setLauncher(Block targetBlock, int velocity, int height, Player player) {
-        Configuration config = MinerLauncher.getPlugin().getConfig();
+        Configuration config = MinerLaunchPads.getPlugin().getConfig();
         int nextLauncherIndex = getNextAvailableLauncherIndex(config);
 
         targetBlock.setType(Material.LIGHT_WEIGHTED_PRESSURE_PLATE);
@@ -103,7 +97,7 @@ public class SetLauncherCommand implements CommandExecutor {
         config.set(basePath + ".velocity", velocity);
         config.set(basePath + ".height", height);
 
-        MinerLauncher.getPlugin().saveConfig();  // Salva la configurazione
+        MinerLaunchPads.getPlugin().saveConfig();  // Salva la configurazione
 
         player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.success-launcher-set").replace("%x%", String.valueOf(targetBlock.getLocation().getBlockX())).replace("%y%", String.valueOf(targetBlock.getLocation().getBlockY())).replace("%z%", String.valueOf(targetBlock.getLocation().getBlockZ()))));
         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 100, 1);

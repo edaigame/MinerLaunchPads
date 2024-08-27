@@ -1,8 +1,7 @@
-package me.minerscave.minerLauncher.commands;
+package me.minerscave.minerLaunchPads.commands;
 
-import me.minerscave.minerLauncher.MinerLauncher;
+import me.minerscave.minerLaunchPads.MinerLaunchPads;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,11 +10,12 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class LauncherInfoCommand implements CommandExecutor {
 
-    Configuration config = MinerLauncher.getPlugin().getConfig();
+    Configuration config = MinerLaunchPads.getPlugin().getConfig();
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
@@ -51,7 +51,7 @@ public class LauncherInfoCommand implements CommandExecutor {
                         int velocity = section.getInt("velocity");
                         int height = section.getInt("height");
 
-                        if (configWorld == world && configX == x && configY == y && configZ == z) {
+                        if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
                             player.sendMessage(ChatColor.GOLD + "-- Launcher Info --------------------------------");
                             player.sendMessage(" ");
                             player.sendMessage(ChatColor.GOLD + "Name: " + ChatColor.RESET + key);
@@ -75,7 +75,7 @@ public class LauncherInfoCommand implements CommandExecutor {
             }
 
         }else{
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLauncher.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', MinerLaunchPads.getPlugin().getConfig().getString("messages.error-you-are-not-a-player")));
         }
 
         return true;
