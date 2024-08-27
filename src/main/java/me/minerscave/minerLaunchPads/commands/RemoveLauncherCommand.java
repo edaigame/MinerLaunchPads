@@ -13,6 +13,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class RemoveLauncherCommand implements CommandExecutor {
@@ -43,12 +44,12 @@ public class RemoveLauncherCommand implements CommandExecutor {
                     ConfigurationSection section = config.getConfigurationSection("launchers."+key);
 
                     if (section != null) {
-                        String configWorld = config.getString(key + ".world");
+                        String configWorld = section.getString("world");
                         int configX = section.getInt("x");
                         int configY = section.getInt("y");
                         int configZ = section.getInt("z");
 
-                        if (configX == x && configY == y && configZ == z) {
+                        if (configWorld == world && configX == x && configY == y && configZ == z) {
                             // Segna il launcher come rimosso
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.success-launcher-remove").replace("%x%", String.valueOf(targetBlock.getLocation().getBlockX())).replace("%y%", String.valueOf(targetBlock.getLocation().getBlockY())).replace("%z%", String.valueOf(targetBlock.getLocation().getBlockZ()))));
 

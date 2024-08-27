@@ -32,6 +32,8 @@ public class LauncherInfoCommand implements CommandExecutor {
             }
             Set<String> keys = launchersSection.getKeys(false);
 
+
+
             String world = player.getWorld().getName();
             int x = block.getLocation().getBlockX();
             int y = block.getLocation().getBlockY();
@@ -44,14 +46,14 @@ public class LauncherInfoCommand implements CommandExecutor {
                     ConfigurationSection section = config.getConfigurationSection("launchers."+key);
 
                     if (section != null) {
-                        String configWorld = config.getString(key + ".world");
+                        String configWorld = section.getString("world");
                         int configX = section.getInt("x");
                         int configY = section.getInt("y");
                         int configZ = section.getInt("z");
                         int velocity = section.getInt("velocity");
                         int height = section.getInt("height");
 
-                        if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
+                        if (configWorld == world && configX == x && configY == y && configZ == z) {
                             player.sendMessage(ChatColor.GOLD + "-- Launcher Info --------------------------------");
                             player.sendMessage(" ");
                             player.sendMessage(ChatColor.GOLD + "Name: " + ChatColor.RESET + key);

@@ -43,7 +43,7 @@ public class PlayerLauncherBlockBreakListener implements Listener {
                 int configY = section.getInt("y");
                 int configZ = section.getInt("z");
 
-                if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
+                if (configWorld == world && configX == x && configY == y && configZ == z) {
                     // Blocca la rottura del launcher
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.cant-break")));
                     event.setCancelled(true);

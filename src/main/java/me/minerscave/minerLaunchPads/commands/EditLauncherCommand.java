@@ -10,6 +10,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class EditLauncherCommand implements CommandExecutor {
@@ -59,7 +60,7 @@ public class EditLauncherCommand implements CommandExecutor {
                     ConfigurationSection section = config.getConfigurationSection("launchers."+key);
 
                     if (section != null) {
-                        String configWorld = config.getString(key + ".world");
+                        String configWorld = section.getString("world");
                         int configX = section.getInt("x");
                         int configY = section.getInt("y");
                         int configZ = section.getInt("z");

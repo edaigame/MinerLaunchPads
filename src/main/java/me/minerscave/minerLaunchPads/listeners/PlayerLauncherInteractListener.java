@@ -48,7 +48,7 @@ public class PlayerLauncherInteractListener implements Listener {
                     double configVelocity = section.getDouble("velocity");
                     double configHeight = section.getDouble("height");
 
-                    if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
+                    if (configWorld == world && configX == x && configY == y && configZ == z) {
                         // Lancia il giocatore
                         Vector launchVector = player.getLocation().getDirection().multiply(configVelocity).setY(configHeight);
                         player.setVelocity(launchVector);
