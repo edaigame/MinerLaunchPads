@@ -1,0 +1,6 @@
+name: MinerLauncher
+version: '0.1-SNAPSHOT'
+main: me.minerscave.minerLauncher.MinerLauncher
+api-version: '1.21'
+authors: [Miner's Cave]
+description: Plugin create by Miner for his Minecraft Server, "The Miner"
