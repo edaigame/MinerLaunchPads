@@ -29,7 +29,7 @@ The **LaunchPads Plugin** is a Minecraft Spigot plugin that allows players to cr
 
 ### Installation
 
-1. Download the `.jar` file from the [releases section](https://github.com/minercave/MinerLaunchPads/releases/).
+1. Download the `.jar` file from the [SpigotMC page]([https://github.com/minercave/MinerLaunchPads/releases/](https://www.spigotmc.org/resources/miner-launchpads.119192/)).
 2. Place the file into your server's `plugins` folder.
 3. Restart your server or use the `/reload` command to load the plugin.
 
