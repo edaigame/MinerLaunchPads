@@ -6,8 +6,10 @@ import me.minerscave.minerLaunchPads.commands.RemoveLauncherCommand;
 import me.minerscave.minerLaunchPads.commands.SetLauncherCommand;
 import me.minerscave.minerLaunchPads.listeners.PlayerLauncherBlockBreakListener;
 import me.minerscave.minerLaunchPads.listeners.PlayerLauncherInteractListener;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MinerLaunchPads extends JavaPlugin {
@@ -16,13 +18,16 @@ public final class MinerLaunchPads extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        plugin = this;
+        saveConfig();
         // Plugin startup logic
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b[MinerLaunchPads] Plugin started!"));
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b[MinerLaunchPads] Plugin made by &lMiner's Cave!"));
-        plugin = this;
 
-        this.getConfig().options().copyDefaults(true);
-        this.saveDefaultConfig();
+
+
 
         //Register Events
         getServer().getPluginManager().registerEvents(new PlayerLauncherInteractListener(), this);
@@ -33,14 +38,12 @@ public final class MinerLaunchPads extends JavaPlugin {
         getCommand("removelauncher").setExecutor(new RemoveLauncherCommand());
         getCommand("editlauncher").setExecutor(new EditLauncherCommand());
         getCommand("launcherinfo").setExecutor(new LauncherInfoCommand());
-    }
 
-    @Override
-    public void onDisable() {
-        plugin.reloadConfig();
+
     }
 
     public static MinerLaunchPads getPlugin() {
         return plugin;
     }
+
 }

@@ -65,7 +65,7 @@ public class EditLauncherCommand implements CommandExecutor {
                         int configY = section.getInt("y");
                         int configZ = section.getInt("z");
 
-                        if (configWorld == world && configX == x && configY == y && configZ == z) {
+                        if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
                             editLauncher(block, velocity, height, player, key);
                             launcherFound = true;
                             break;

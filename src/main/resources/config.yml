@@ -7,6 +7,7 @@ messages:
   error-not-oak-plate: "&4Error. You must target an Oak Pressure Plate."
 
   cant-break: "&4You can't break launch pads."
+  cant-use: "&4You can't use launch pads."
 
   success-launcher-set: "&2Successfully set launcher at %x% %y% %z%"
   success-launcher-edit: "&2Successfully edited launcher at %x% %y% %z%"

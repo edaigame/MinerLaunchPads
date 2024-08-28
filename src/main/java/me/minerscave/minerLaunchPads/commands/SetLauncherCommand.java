@@ -19,13 +19,13 @@ import java.util.Set;
 
 public class SetLauncherCommand implements CommandExecutor {
 
-    Configuration config = MinerLaunchPads.getPlugin().getConfig();
-    ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
-
+        Configuration config = MinerLaunchPads.getPlugin().getConfig();
+        ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
         if (commandSender instanceof Player player) {
 
@@ -67,7 +67,7 @@ public class SetLauncherCommand implements CommandExecutor {
                     int configY = config.getInt(key + ".y");
                     int configZ = config.getInt(key + ".z");
 
-                    if (configWorld == world && configX == x && configY == y && configZ == z) {
+                    if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.error-already-a-launch-pad")));
                         return true;  // Se il launcher esiste già, esci
                     }

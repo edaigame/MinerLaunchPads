@@ -31,6 +31,7 @@ public class RemoveLauncherCommand implements CommandExecutor {
                 return true;
             }
             Set<String> keys = launchersSection.getKeys(false);
+            System.out.println(keys);
 
             String world = player.getWorld().getName();
             int x = targetBlock.getLocation().getBlockX();
@@ -42,6 +43,7 @@ public class RemoveLauncherCommand implements CommandExecutor {
 
                 for (String key : keys) {
                     ConfigurationSection section = config.getConfigurationSection("launchers."+key);
+                    System.out.println(section);
 
                     if (section != null) {
                         String configWorld = section.getString("world");
@@ -49,7 +51,13 @@ public class RemoveLauncherCommand implements CommandExecutor {
                         int configY = section.getInt("y");
                         int configZ = section.getInt("z");
 
-                        if (configWorld == world && configX == x && configY == y && configZ == z) {
+                        System.out.println(configWorld + " vs " + world);
+                        System.out.println(configX + " vs " + x);
+                        System.out.println(configY + " vs " + y);
+                        System.out.println(configZ + " vs " + z);
+
+                        if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
+                            System.out.println("Condition is true");
                             // Segna il launcher come rimosso
                             player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.success-launcher-remove").replace("%x%", String.valueOf(targetBlock.getLocation().getBlockX())).replace("%y%", String.valueOf(targetBlock.getLocation().getBlockY())).replace("%z%", String.valueOf(targetBlock.getLocation().getBlockZ()))));
 

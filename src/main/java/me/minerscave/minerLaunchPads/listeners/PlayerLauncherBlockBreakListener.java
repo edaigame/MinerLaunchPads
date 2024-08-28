@@ -21,12 +21,11 @@ public class PlayerLauncherBlockBreakListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (block == null || !block.getType().equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE)) {
-            return; // Esci se il blocco non è una pedana leggera
-        }
-
         Configuration config = MinerLaunchPads.getPlugin().getConfig();
         ConfigurationSection launchersSection = config.getConfigurationSection("launchers");
+        if (launchersSection == null) {
+            return;
+        }
         Set<String> keys = launchersSection.getKeys(false);
 
         String world = player.getWorld().getName();
@@ -43,7 +42,12 @@ public class PlayerLauncherBlockBreakListener implements Listener {
                 int configY = section.getInt("y");
                 int configZ = section.getInt("z");
 
-                if (configWorld == world && configX == x && configY == y && configZ == z) {
+                if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
+
+                    if (block == null || !block.getType().equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE)) {
+                        return; // Esci se il blocco non è una pedana leggera
+                    }
+
                     // Blocca la rottura del launcher
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', config.getString("messages.cant-break")));
                     event.setCancelled(true);

@@ -48,3 +48,6 @@ permissions:
   minerlauncher.launcherinfo:
     description: Allows players to run the /launcherinfo command
     default: false
+  minerlauncher.uselaunchers:
+    description: Allows players to use launchpads
+    default: false

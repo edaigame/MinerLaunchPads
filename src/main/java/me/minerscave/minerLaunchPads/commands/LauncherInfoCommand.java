@@ -15,14 +15,14 @@ import java.util.Set;
 
 public class LauncherInfoCommand implements CommandExecutor {
 
-    Configuration config = MinerLaunchPads.getPlugin().getConfig();
+
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
 
 
         if(commandSender instanceof Player player){
-
+            Configuration config = MinerLaunchPads.getPlugin().getConfig();
             Block block = player.getTargetBlock(null, 4);
             ConfigurationSection launchersSection = config.getConfigurationSection("launchers");
 
@@ -31,8 +31,7 @@ public class LauncherInfoCommand implements CommandExecutor {
                 return true;
             }
             Set<String> keys = launchersSection.getKeys(false);
-
-
+            System.out.println(keys);
 
             String world = player.getWorld().getName();
             int x = block.getLocation().getBlockX();
@@ -53,7 +52,12 @@ public class LauncherInfoCommand implements CommandExecutor {
                         int velocity = section.getInt("velocity");
                         int height = section.getInt("height");
 
-                        if (configWorld == world && configX == x && configY == y && configZ == z) {
+                        System.out.println(configWorld + " vs " + world);
+                        System.out.println(configX + " vs " + x);
+                        System.out.println(configY + " vs " + y);
+                        System.out.println(configZ + " vs " + z);
+
+                        if (Objects.equals(configWorld, world) && configX == x && configY == y && configZ == z) {
                             player.sendMessage(ChatColor.GOLD + "-- Launcher Info --------------------------------");
                             player.sendMessage(" ");
                             player.sendMessage(ChatColor.GOLD + "Name: " + ChatColor.RESET + key);
