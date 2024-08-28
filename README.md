@@ -26,6 +26,7 @@ The **LaunchPads Plugin** is a Minecraft Spigot plugin that allows players to cr
 - `minerlauncher.removelauncher`: Allows players to remove launchpads.
 - `minerlauncher.editlauncher`: Allows players to edit launchpads.
 - `minerlauncher.launcherinfo`: Allows players to retreive information about launchpads.
+- `minerlauncher.uselaunchers`: Allows players to use launchers.
 
 ### Installation
 
